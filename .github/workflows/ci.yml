@@ -19,6 +19,9 @@ jobs:
 
     name: Build and test
     runs-on: ubuntu-22.04
+    defaults:
+      run:
+        working-directory: ./reverse_file
 
     steps:
     - uses: actions/checkout@v4
@@ -34,10 +37,6 @@ jobs:
         key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
         restore-keys: ${{ runner.os }}-mix-
     - name: Install dependencies
-      run: |
-        cd reverse_file
-        mix deps.get
+      run: mix deps.get
     - name: Run tests
-      run: |
-        cd reverse_file
-        mix test
+      run: mix test
